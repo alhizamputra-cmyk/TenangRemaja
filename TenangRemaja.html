@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TenangRemaja</title>
+<style>
+:root{--bg:#eaf4f3;--card:#fff;--tx:#173a3a;--mu:#5d7c7b;--pr:#2a9d8f;--pr2:#1f7a70;--ac:#f4a261;--bd:#d3e6e4;--dn:#e76f51;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1f1f;--card:#17302f;--tx:#e6f3f2;--mu:#9bbab8;--bd:#25423f}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;justify-content:center;min-height:100vh}
+#app{width:100%;max-width:430px;min-height:100vh;background:var(--bg);position:relative;padding:20px 18px 40px}
+.scr{display:none;animation:f .3s}.scr.on{display:block}@keyframes f{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+h1{font-size:24px;margin:6px 0}h2{font-size:19px;margin:4px 0 12px}p{line-height:1.5;margin:6px 0}.mu{color:var(--mu);font-size:14px}
+.logo{width:92px;height:92px;border-radius:28px;background:linear-gradient(135deg,var(--pr),#8fd3c7);display:grid;place-items:center;margin:0 auto;box-shadow:0 8px 24px #2a9d8f55}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:16px;margin:10px 0}
+button,.btn{font:inherit;border:0;border-radius:14px;padding:13px 16px;background:var(--pr);color:#fff;font-weight:600;cursor:pointer;width:100%;margin-top:8px}
+button.sec{background:transparent;color:var(--pr);border:1.5px solid var(--pr)}button:disabled{opacity:.45}
+input,textarea,select{font:inherit;width:100%;padding:12px;border-radius:12px;border:1.5px solid var(--bd);background:var(--card);color:var(--tx);margin-top:6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.menu{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:18px 12px;text-align:center;cursor:pointer;font-weight:600;color:var(--tx);margin:0}
+.menu span{display:block;font-size:30px;margin-bottom:6px}.menu:hover{border-color:var(--pr)}
+.back{background:none;color:var(--pr);width:auto;padding:4px 0;margin:0 0 8px}
+.opt{display:block;text-align:left;background:var(--card);color:var(--tx);border:1.5px solid var(--bd);margin-top:8px}.opt.sel{border-color:var(--pr);background:#2a9d8f22}
+.bar{height:8px;background:var(--bd);border-radius:8px;overflow:hidden;margin:8px 0 16px}.bar i{display:block;height:100%;background:var(--pr);transition:width .3s}
+.tag{display:inline-block;padding:4px 12px;border-radius:99px;font-weight:700;font-size:14px;color:#fff}
+.breath{width:150px;height:150px;border-radius:50%;background:radial-gradient(var(--pr),#8fd3c7);margin:24px auto;display:grid;place-items:center;color:#fff;font-weight:700;animation:b 8s infinite ease-in-out}
+@keyframes b{0%,100%{transform:scale(.6)}50%{transform:scale(1.1)}}
+.quote{font-size:21px;line-height:1.45;text-align:center;padding:26px 8px;font-weight:600}
+.row{display:flex;gap:10px;align-items:center}.av{width:46px;height:46px;border-radius:50%;background:#8fd3c7;display:grid;place-items:center;font-size:22px;flex:none}
+.slot{display:inline-block;padding:7px 12px;border:1.5px solid var(--bd);border-radius:10px;margin:4px 4px 0 0;cursor:pointer;font-size:14px}.slot.sel{background:var(--pr);color:#fff;border-color:var(--pr)}
+.foot{text-align:center;font-size:12px;color:var(--mu);margin-top:24px}
+</style>
+</head>
+<body>
+<div id="app">
+
+<section class="scr" id="splash" style="text-align:center;padding-top:22vh">
+ <div class="logo"><svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></div>
+ <h1 style="margin-top:18px">TenangRemaja</h1><p class="mu">Ruang aman untuk kesehatan mentalmu</p>
+ <button onclick="go('login')" style="max-width:240px;margin-top:40px">Mulai</button>
+</section>
+
+<section class="scr" id="login">
+ <div class="logo" style="width:64px;height:64px;border-radius:20px"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></div>
+ <h2 style="text-align:center;margin-top:14px" id="lt">Masuk Anonim</h2>
+ <p class="mu" style="text-align:center">Tanpa nama asli. Cukup nama panggilan dan PIN rahasia.</p>
+ <div class="card"><label>Nama panggilan<input id="nick" placeholder="mis. Bintang"></label>
+ <label style="display:block;margin-top:10px">PIN (4 angka)<input id="pin" type="password" inputmode="numeric" maxlength="4" placeholder="••••"></label>
+ <p class="mu" id="err" style="color:var(--dn)"></p>
+ <button onclick="auth()" id="ab">Masuk</button>
+ <button class="sec" onclick="tog()" id="tg">Belum punya akun? Daftar</button></div>
+ <p class="foot">🔒 Data terenkripsi dan dijaga kerahasiaannya</p>
+</section>
+
+<section class="scr" id="home">
+ <p class="mu">Halo,</p><h1 id="hi">Sahabat</h1><p class="mu">Apa yang kamu butuhkan hari ini?</p>
+ <div class="grid" style="margin-top:16px">
+  <button class="menu" onclick="startCek()"><span>🩺</span>Cek Kondisi</button>
+  <button class="menu" onclick="go('self')"><span>🌿</span>Self-Care</button>
+  <button class="menu" onclick="go('curhat')"><span>✍️</span>Curhat</button>
+  <button class="menu" onclick="go('konsul')"><span>💬</span>Konsultasi</button>
+  <button class="menu" style="grid-column:span 2" onclick="aff()"><span>🌞</span>Daily Affirmation</button>
+ </div>
+ <div class="card" style="margin-top:18px"><b>Butuh bantuan darurat?</b><p class="mu">Hubungi layanan kesehatan jiwa 119 ext. 8 kapan saja.</p></div>
+ <button class="sec" onclick="out()">Keluar</button>
+</section>
+
+<section class="scr" id="cek">
+ <button class="back" onclick="go('home')">← Kembali</button>
+ <h2>Cek Kondisi</h2><p class="mu">Selama 2 minggu terakhir, seberapa sering kamu merasa…</p>
+ <div class="bar"><i id="pb"></i></div>
+ <div class="card"><b id="q"></b><div id="os"></div></div>
+ <button id="nx" onclick="nextQ()" disabled>Lanjut</button>
+</section>
+
+<section class="scr" id="hasil">
+ <h2>Hasil Skrining</h2>
+ <div class="card" style="text-align:center"><p class="mu">Tingkat risiko</p><span class="tag" id="lv"></span><h1 id="sc"></h1><p id="ds"></p></div>
+ <div id="ticket"></div>
+ <p class="mu">Hasil ini bukan diagnosis. Pemeriksaan oleh tenaga profesional tetap diperlukan.</p>
+ <button class="sec" onclick="go('home')">Kembali ke Home</button>
+</section>
+
+<section class="scr" id="self">
+ <button class="back" onclick="go('home')">← Kembali</button>
+ <h2>Self-Care</h2><p class="mu">Latihan napas 4-4: tarik napas saat lingkaran membesar, hembuskan saat mengecil.</p>
+ <div class="breath">Napas…</div>
+ <div class="card"><b>Grounding 5-4-3-2-1</b><p class="mu">Sebutkan 5 hal yang kamu lihat, 4 yang kamu rasakan, 3 yang kamu dengar, 2 yang kamu cium, dan 1 yang kamu kecap.</p></div>
+ <div class="card"><b>Tips ringan</b><p class="mu">Minum air putih, regangkan badan 2 menit, dan jauhkan HP sebelum tidur.</p></div>
+</section>
+
+<section class="scr" id="curhat">
+ <button class="back" onclick="go('home')">← Kembali</button>
+ <h2>Curhat Anonim</h2><p class="mu">Tulis perasaanmu. Tidak ada nama yang ditampilkan.</p>
+ <textarea id="ct" rows="5" placeholder="Hari ini aku merasa…"></textarea>
+ <button onclick="post()">Kirim</button>
+ <div id="cl"></div>
+</section>
+
+<section class="scr" id="konsul">
+ <button class="back" onclick="go('home')">← Kembali</button>
+ <h2>Konsultasi</h2><p class="mu">Pilih psikolog atau konselor, lalu pilih jadwal.</p>
+ <div id="pl"></div>
+ <div class="card" id="jd" style="display:none"><b>Jadwal tersedia</b><div id="sl"></div><button id="bk" onclick="book()" disabled>Konfirmasi Jadwal</button></div>
+ <div id="bm"></div>
+</section>
+
+<section class="scr" id="afirm">
+ <button class="back" onclick="go('home')">← Kembali</button>
+ <h2>Daily Affirmation</h2>
+ <div class="card"><div class="quote" id="aq"></div></div>
+ <button onclick="aff(1)">Kalimat lain</button>
+</section>
+</div>
+
+<script>
+var $=function(i){return document.getElementById(i)},user=null,reg=false,qi=0,ans=[],sel=-1,curPs=null,slot=null,posts=[{t:"Aku takut nilaiku jelek dan mengecewakan orang tua.",w:"2 jam lalu"},{t:"Kadang merasa sendirian meski ada banyak teman.",w:"kemarin"}];
+var Q=["Merasa sedih atau murung","Kehilangan minat pada hal yang biasa disukai","Sulit tidur atau tidur berlebihan","Merasa cemas atau gelisah berlebihan","Merasa tidak berharga atau bersalah"];
+var O=["Tidak pernah","Beberapa hari","Lebih dari separuh hari","Hampir setiap hari"];
+var A=["Kamu sudah berusaha, dan itu sudah cukup hari ini.","Perasaanmu valid. Pelan-pelan saja.","Meminta bantuan adalah tanda keberanian.","Kamu berharga, apa pun nilai atau pencapaianmu.","Badai pasti berlalu, dan kamu tidak sendirian.","Satu langkah kecil hari ini tetap kemajuan."];
+var P=[{n:"Dr. Annisa Putri, M.Psi",r:"Psikolog Klinis",s:["Senin 15.00","Rabu 16.00","Jumat 14.00"]},{n:"Raka Pratama, S.Psi",r:"Konselor Remaja",s:["Selasa 15.30","Kamis 16.00","Sabtu 10.00"]},{n:"dr. Maya Sari, Sp.KJ",r:"Psikiater (via Puskesmas)",s:["Rabu 09.00","Jumat 10.30"]}];
+function go(id){document.querySelectorAll(".scr").forEach(function(s){s.classList.remove("on")});$(id).classList.add("on");window.scrollTo(0,0)}
+function tog(){reg=!reg;$("lt").textContent=reg?"Daftar Anonim":"Masuk Anonim";$("ab").textContent=reg?"Daftar":"Masuk";$("tg").textContent=reg?"Sudah punya akun? Masuk":"Belum punya akun? Daftar"}
+function auth(){var n=$("nick").value.trim(),p=$("pin").value;if(!n||!/^\d{4}$/.test(p)){$("err").textContent="Isi nama panggilan dan PIN 4 angka.";return}$("err").textContent="";user=n;$("hi").textContent=n;go("home")}
+function out(){user=null;$("pin").value="";go("login")}
+function startCek(){qi=0;ans=[];showQ();go("cek")}
+function showQ(){sel=-1;$("q").textContent=(qi+1)+". "+Q[qi];$("pb").style.width=(qi/Q.length*100)+"%";$("nx").disabled=true;$("nx").textContent=qi==Q.length-1?"Lihat Hasil":"Lanjut";$("os").innerHTML=O.map(function(o,i){return '<button class="opt" onclick="pick('+i+')">'+o+'</button>'}).join("")}
+function pick(i){sel=i;document.querySelectorAll(".opt").forEach(function(b,j){b.classList.toggle("sel",j==i)});$("nx").disabled=false}
+function nextQ(){ans.push(sel);qi++;if(qi<Q.length)showQ();else result()}
+function result(){var s=ans.reduce(function(a,b){return a+b},0),l,c,d;
+ if(s<=4){l="Ringan";c="#2a9d8f";d="Kondisimu relatif baik. Lanjutkan self-care dan jaga rutinitas sehat."}
+ else if(s<=9){l="Sedang";c="#f4a261";d="Ada tanda stres yang perlu diperhatikan. Disarankan berkonsultasi."}
+ else{l="Berat";c="#e76f51";d="Kamu membutuhkan pendampingan segera. Terima kasih sudah jujur pada dirimu."}
+ $("lv").textContent=l;$("lv").style.background=c;$("sc").textContent="Skor "+s+"/15";$("ds").textContent=d;
+ var t="";if(s>4){t='<div class="card"><b>Tiket Rujukan Digital</b><p class="mu">Rujukan rahasia ke Puskesmas. Guru dan sekolah tidak melihat namamu.</p><button onclick="tiket('+s+')">Terbitkan Tiket Rujukan</button></div>'}
+ if(s>9){t+='<div class="card" style="border-color:var(--dn)"><b>⚠️ Bantuan Darurat 24 Jam</b><p>Hubungi 119 ext. 8 sekarang atau datang ke IGD terdekat.</p></div>'}
+ $("ticket").innerHTML=t;go("hasil")}
+function tiket(s){var k="TR-"+Math.random().toString(36).slice(2,8).toUpperCase();$("ticket").innerHTML='<div class="card" style="border:2px dashed var(--pr);text-align:center"><p class="mu">Tiket Rujukan Digital</p><h1>'+k+'</h1><p>Tujuan: Puskesmas Kecamatan</p><p class="mu">Level: '+(s>9?"Berat":"Sedang")+' · Berlaku 7 hari<br>Tunjukkan kode ini ke petugas. Dokter menerima notifikasi otomatis.</p></div>'+(s>9?'<div class="card" style="border-color:var(--dn)"><b>⚠️ Bantuan Darurat 24 Jam</b><p>Hubungi 119 ext. 8 sekarang.</p></div>':"")}
+function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
+function rc(){$("cl").innerHTML=posts.map(function(p){return '<div class="card"><p>'+esc(p.t)+'</p><p class="mu">Anonim · '+p.w+'</p></div>'}).join("")}
+function post(){var v=$("ct").value.trim();if(!v)return;posts.unshift({t:v,w:"baru saja"});$("ct").value="";rc()}
+function rp(){$("pl").innerHTML=P.map(function(p,i){return '<div class="card row"><div class="av">🧑‍⚕️</div><div style="flex:1"><b>'+p.n+'</b><p class="mu" style="margin:0">'+p.r+'</p></div><button style="width:auto;margin:0;padding:9px 14px" onclick="ps('+i+')">Pilih</button></div>'}).join("")}
+function ps(i){curPs=i;slot=null;$("bm").innerHTML="";$("bk").disabled=true;$("jd").style.display="block";$("sl").innerHTML=P[i].s.map(function(s,j){return '<span class="slot" onclick="sk('+j+')">'+s+'</span>'}).join("");$("jd").scrollIntoView({behavior:"smooth"})}
+function sk(j){slot=j;document.querySelectorAll(".slot").forEach(function(e,k){e.classList.toggle("sel",k==j)});$("bk").disabled=false}
+function book(){$("bm").innerHTML='<div class="card" style="border-color:var(--pr)"><b>✅ Jadwal dikonfirmasi</b><p>'+P[curPs].n+'<br>'+P[curPs].s[slot]+' (online, anonim)</p></div>';$("jd").style.display="none"}
+var ai=0;function aff(n){ai=n?(ai+1)%A.length:Math.floor(Math.random()*A.length);$("aq").textContent="“"+A[ai]+"”";go("afirm")}
+rc();rp();go("splash");
+</script>
+</body>
+</html>
